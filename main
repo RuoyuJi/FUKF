@@ -1,9 +1,18 @@
-def initialize_filter(X, P, Q, R, alpha, kappa):
+initialize_filter:
     '''Initializing the unscented Kalman filter'''
-    # The total number of simulation time steps N
 
+    # Simulated generation of real clock changes
+    for i in range(kappa):
+        X=fun_f+sqrtm(Q)
 
+    # Generate observation values
+    for i in range(kappa):
+        Z=fun_h+sqrtm(R)
 
+    # Call UKF filtering algorithm
+    for i in range(kappa):
+        X, P=UnscentedKalmanFilter(X_previous, P_previous, Q, Z, R, fun_f, fun_h, alpha, kappa)
+    
 function UnscentedKalmanFilter(X_previous, P_previous, Q, Z, R, fun_f, fun_h, alpha, kappa)
     # Generate sigma points
     sigma_points = GenerateSigmaPoints(X_previous, P_previous, alpha, kappa)
