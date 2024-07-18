@@ -4,26 +4,22 @@ function randomSVD(A, k, l, p):
        l is the oversampling parameter
        p is the power iteration parameter
     '''
-    # Step 1: Compute an n × (k+1) subspace matrix Q using a random n × (k+1) Gaussian matrix
+    # Compute an n × (k+1) subspace matrix Q using a random n × (k+1) Gaussian matrix
     Q = randomGaussian(n, k + l)
 
-    # Step 2: Form an m × (k+1) matrix C = AQ
-    C = A.dot(Q)
+    # Form an m × (k+1) matrix C = AQ
+    C = A × Q
 
-    # Step 3: Orthogonalize C using the QR decomposition to obtain an m × (k+1) orthogonal matrix S
-    Q, R = np.linalg.qr(C)
+    # Orthogonalize C using the QR decomposition to obtain an m × (k+1) orthogonal matrix Q
+    Q, R = qr(C)
 
-    # Step 4: Compute an m × k matrix Y = QT A, and perform k steps of power iteration on Y to obtain an m × k matrix Z
-    Y = Q.T.dot(A)
-    Z = powerIteration(Y, k, p)
-
-    # Step 5: Compute an n × k matrix B = Q.Z
-    B = Q.dot(Z)
-
-    # Step 6: Perform the SVD on B to obtain the approximate SVD of A
-    U, s, Vt = np.linalg.svd(B)
-    Uk = U[:k]
-    sk = s[:k]
-    Vk = Vt[:k].T
+    # Compute an m × k matrix B = QT A
+    Y = Q.T × A
+  
+    # Perform the SVD on B to obtain the approximate SVD of A
+    U, s, Vt = svd(B)
+    Uk = Q × U
+    sk = s
+    Vk = Vt
 
     return Uk, sk, Vk
