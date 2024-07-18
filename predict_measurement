@@ -1,0 +1,17 @@
+function  predict_measurement(sigma_points, fun_h, R):
+    Z_sigma_pred = np.zeros(m, kappa)
+    for i in range(kappa):
+        Z_sigma_pred[:, i] = fun_h(sigma_points[:, i])
+
+    Wm, Wc = calculate_weights(m, n, alpha, kappa)
+
+    Z_bar = np.zeros(m, 1)
+    for i in range(kappa):
+        Z_bar += Wm[i]*Z_sigma_pred[:, i]
+
+    Pzz = np.zeros(m, m)
+    for i in range(kappa):
+        dZ = Z_sigma_pred[:, i] - Z_bar
+        Pzz += Wc[i] * dZ @ dZ.T + R
+
+return Z_sigma_pred, Z_bar, Pzz_U, Pzz_S, Pzz_K
