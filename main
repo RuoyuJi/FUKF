@@ -1,3 +1,9 @@
+def initialize_filter(X, P, Q, R, alpha, kappa):
+    '''Initializing the unscented Kalman filter'''
+    # The total number of simulation time steps N
+
+
+
 function UnscentedKalmanFilter(X_previous, P_previous, Q, Z, R, fun_f, fun_h, alpha, kappa)
     # Generate sigma points
     sigma_points = GenerateSigmaPoints(X_previous, P_previous, alpha, kappa)
