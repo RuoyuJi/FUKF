@@ -5,6 +5,7 @@ initialize_filter:
     Initialize state X_previous
     Initialize covariance P_previous
     Initialize the total simulation time step length N
+    Initialize the UT transformation coefficient alpha adn kappa
 
     # Simulated generation of real clock changes
     for i in range(N):
