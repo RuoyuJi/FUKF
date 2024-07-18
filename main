@@ -9,10 +9,10 @@ function UnscentedKalmanFilter(X_previous, P_previous, Q, Z, R, fun_f, fun_h, al
     Z_sigma_pred, Z_bar, Pzz = PredictMeasurement(sigma_points, fun_h, R)
     # Calculate cross-covariance and Kalman gain
     Pxz = CalculateCrossCovariance(X_sigma_pred, Z_sigma_pred, X_bar, Z_bar, alpha, kappa)
-    K = Pxz * inv(Pzz)
+    K = Pxz × inv(Pzz)
 
     # Update state and covariance
     X, P = UpdateState(X_bar, K, Z, Z_bar)
-    P = P - K  * Pzz  * K.T
+    P = P - K  × Pzz  × K.T
 
 return X, P
