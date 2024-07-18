@@ -1,16 +1,21 @@
 initialize_filter:
     '''Initializing the unscented Kalman filter'''
+    Initialize process noise covariance matrix Q
+    Initialize observation noise covariance matrix R 
+    Initialize state X_previous
+    Initialize covariance P_previous
+    Initialize the total simulation time step length N
 
     # Simulated generation of real clock changes
-    for i in range(kappa):
+    for i in range(N):
         X=fun_f+sqrtm(Q)
 
     # Generate observation values
-    for i in range(kappa):
+    for i in range(N):
         Z=fun_h+sqrtm(R)
 
     # Call UKF filtering algorithm
-    for i in range(kappa):
+    for i in range(N):
         X, P=UnscentedKalmanFilter(X_previous, P_previous, Q, Z, R, fun_f, fun_h, alpha, kappa)
     
 function UnscentedKalmanFilter(X_previous, P_previous, Q, Z, R, fun_f, fun_h, alpha, kappa)
