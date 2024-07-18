@@ -4,21 +4,21 @@ function randomSVD(A, k, l, p):
        l is the oversampling parameter
        p is the power iteration parameter
     '''
-    # Compute an n × (k+1) subspace matrix Q using a random n × (k+1) Gaussian matrix
+    # Compute an n * (k+1) subspace matrix Q using a random n * (k+1) Gaussian matrix
     Q = randomGaussian(n, k + l)
 
     # Form an m × (k+1) matrix C = AQ
     C = A × Q
 
-    # Orthogonalize C using the QR decomposition to obtain an m × (k+1) orthogonal matrix Q
+    # Orthogonalize C using the QR decomposition to obtain an m * (k+1) orthogonal matrix Q
     Q, R = qr(C)
 
-    # Compute an m × k matrix B = QT A
-    Y = Q.T × A
+    # Compute an m * k matrix B = QT A
+    Y = Q.T * A
   
     # Perform the SVD on B to obtain the approximate SVD of A
     U, s, Vt = svd(B)
-    Uk = Q × U
+    Uk = Q * U
     sk = s
     Vk = Vt
 
