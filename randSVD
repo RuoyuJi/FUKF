@@ -5,9 +5,6 @@ function randomSVD(P_A,P_B,k, l):
        l is the oversampling parameter
  
     '''
-
-    
-
  
     # Compute an n * (k+l) subspace matrix Q using a random n * (k+l) Gaussian matrix
     Q = randomGaussian(n, k + l)
