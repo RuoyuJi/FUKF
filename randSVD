@@ -1,16 +1,20 @@
-function randomSVD(A, l):
-    '''A is an m x n matrix
+function randomSVD(P_A,P_B,k, l):
+    '''P_A is vector
+       P_B is a vector
+       k is the rank of matrix
        l is the oversampling parameter
  
     '''
-    # Calculate the rank of the matrix A
-    k=rank (A)
+
+    
+
  
     # Compute an n * (k+l) subspace matrix Q using a random n * (k+l) Gaussian matrix
     Q = randomGaussian(n, k + l)
 
-    # Form an m × (k+l) matrix C = AQ
-    C = A × Q
+    # Form an m × (k+l) matrix C 
+    for i in range(kappa):
+        C += P_A * P_B * P_B.T * Q
 
     # Orthogonalize C using the QR decomposition to obtain an m * (k+l) orthogonal matrix Q
     Q, R = qr(C)
