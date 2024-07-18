@@ -1,16 +1,18 @@
-function randomSVD(A, k, l, p):
+function randomSVD(A, l):
     '''A is an m x n matrix
-       k is the target rank
        l is the oversampling parameter
-       p is the power iteration parameter
+ 
     '''
-    # Compute an n * (k+1) subspace matrix Q using a random n * (k+1) Gaussian matrix
+    # Calculate the rank of the matrix A
+    k=rank (A)
+ 
+    # Compute an n * (k+l) subspace matrix Q using a random n * (k+l) Gaussian matrix
     Q = randomGaussian(n, k + l)
 
-    # Form an m × (k+1) matrix C = AQ
+    # Form an m × (k+l) matrix C = AQ
     C = A × Q
 
-    # Orthogonalize C using the QR decomposition to obtain an m * (k+1) orthogonal matrix Q
+    # Orthogonalize C using the QR decomposition to obtain an m * (k+l) orthogonal matrix Q
     Q, R = qr(C)
 
     # Compute an m * k matrix B = QT A
